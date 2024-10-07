@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Visualizador_de_Facturas_XML.Models.Perfil>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Perfiles</h1>
+
+<p>
+<a class="btn btn-primary" onclick="openModal('@Url.Action("Create", new {})', 'Create')" role="button">
+    <i class="fs-1 bi bi-person-fill-add"></i>
+</a>
+</p>
+
+<div class="input-group">
+    <input type="text" class="form-control mb-3"  id="filterInput" placeholder="Type to search...">
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"> 
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td >
+            <td class="perfil-nombre">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+                <td>
+                    <a class="btn btn-warning" onclick="openModal('@Url.Action("Edit", new { id = item.Id })', 'Editar')" role="button">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <a class="btn btn-success" onclick="openModal('@Url.Action("Details", new { id = item.Id })', 'Detalles')" role="button">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a class="btn btn-danger" onclick="openModal('@Url.Action("Delete", new { id = item.Id })', 'Borrar')" role="button">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/js/FiltrarPorPerfil.js" asp-append-version="true"></script>

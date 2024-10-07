@@ -1,0 +1,107 @@
+﻿@model Visualizador_de_Facturas_XML.Models.Factura
+
+@{
+    ViewData["Title"] = "Detalles de Factura";
+}
+
+<div class="row align-items-start">
+    <div class="col">
+        <strong>Receptor:</strong> <span>@ViewBag.Receptor</span><br>
+        <strong>Rfc:</strong> <span>@ViewBag.ReceptorRfc</span><br>
+        <strong>Fecha de Emisión:</strong> <span>@ViewBag.FechaEmision</span><br>
+        <strong>UUID del XML:</strong> <span class="text-muted">@ViewBag.XmlUUID</span>
+    </div>
+    <div class="col">
+        <strong>Emisor:</strong> <span>@ViewBag.Emisor</span><br>
+        <strong>Emisor Rfc:</strong> <span>@ViewBag.EmisorRfc</span><br>
+    </div>
+</div>
+
+
+    <h5 class="mt-4">Conceptos de la Factura</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Clave Prod/Serv</th>
+                    <th>Cantidad</th>
+                <th class="d-none d-md-table-cell">Unidad</th>
+                    <th>Descripción</th>
+                    <th>Valor Unitario</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Conceptos != null)
+                {
+                double totalImpuesto = 0, totalImporte = 0, totalUnitario = 0;
+                    foreach (var concepto in ViewBag.Conceptos)
+                    {
+                    totalImporte += Convert.ToDouble(concepto.Importe); // Acumula el importe total del
+                    totalUnitario += Convert.ToDouble(concepto.ValorUnitario); // Acumula el unitario total del concepto
+
+                        <tr>
+                            <td>@concepto.ClaveProdServ</td>
+                            <td>@concepto.Cantidad</td>
+                        <td class="d-none d-md-table-cell">@concepto.Unidad</td>
+                            <td>@concepto.Descripcion</td>
+                        <td>@Convert.ToDouble(concepto.ValorUnitario).ToString("#,0.00")</td>
+                            
+                        </tr>
+                    }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="d-none d-md-table-cell"></td>
+                    <td><strong>Total:</strong></td>
+                    <td><strong>@Convert.ToDouble(totalUnitario).ToString("#,0.00")</strong></td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    <h5 class="mt-4">Impuestos de la Factura</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Base</th>
+                    <th>Tipo Impuesto</th>
+                    <th>Tasa</th>
+                    <th>Importe</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Conceptos != null)
+                {
+                    double totalImpuesto = 0;
+                    foreach (var concepto in ViewBag.Conceptos)
+                    {
+                        totalImpuesto += Convert.ToDouble(concepto.ImpuestoImporte); // Acumula el importe del impuesto
+
+                        <tr>
+                            <td>@Convert.ToDouble(concepto.ImpuestoBase).ToString("#,0.00")</td>
+                            <td>@concepto.ImpuestoTipo</td>
+                            <td>@Convert.ToDouble(concepto.ImpuestoTasa).ToString("#,0.00")</td>
+                            <td>@Convert.ToDouble(concepto.ImpuestoImporte).ToString("#,0.00")</td>
+
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Totales:</strong></td>
+                        <td><strong>@totalImpuesto.ToString("#,0.00")</strong></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr/>
+        <div class="align-items-start text-end">
+            <h4><strong>SubTotal:</strong> <span>@Convert.ToDouble(ViewBag.SubTotal).ToString("#,0.00")</span></h4>
+            <h4><strong>Iva:</strong> <span>@Convert.ToDouble(ViewBag.Iva).ToString("#,0.00")</span></h4>
+            <h4><strong>Total:</strong> <span>@Convert.ToDouble(ViewBag.Total).ToString("#,0.00")</span></h4>
+        </div>
+    </div>

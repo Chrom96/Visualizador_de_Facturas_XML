@@ -1,0 +1,42 @@
+﻿@model Visualizador_de_Facturas_XML.Models.Factura
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h5>Factura</h5>
+<hr />
+<div class="row">
+    <form id="formPost" method="post" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UUID" />
+            <div class="form-group">
+                <label asp-for="UUID" class="control-label"></label>
+                <input asp-for="UUID" readonly="readonly" class="form-control" name="UUID" />
+                <span asp-validation-for="UUID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="PerfilID" class="control-label"></label>
+                <input pattern="\d*" asp-for="PerfilID" class="form-control" type="text" class="form-control mb-3" list="datalistOptions2" id="PerfilID" placeholder="Type to search...">
+                <span asp-validation-for="PerfilID" class="text-danger"></span>
+                <datalist id="datalistOptions2">
+                    @foreach (var perfil in ViewData["Perfiles"] as List<Perfil>)
+                    {
+                        <option value="@perfil.Id">@perfil.Nombre</option>
+                    }
+                </datalist>
+            </div>
+        <p>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </p>
+        </form>
+
+</div>
+
+<script src="~/js/ValidarNumeros.js" asp-append-version="true"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

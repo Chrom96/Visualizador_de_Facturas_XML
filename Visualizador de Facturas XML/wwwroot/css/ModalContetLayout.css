@@ -1,0 +1,22 @@
+﻿.parent {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.child {
+    
+}
+
+.input-large {
+    width: 100%;
+}
+.modal-large .modal-dialog {
+    max-width: 80%; /* Ajusta el ancho que prefieras */
+}
+
+@media (max-width: 768px) {
+    .modal-large .modal-dialog {
+        max-width: 100%; /* En móviles sigue ocupando el 100% del ancho */
+    }
+}

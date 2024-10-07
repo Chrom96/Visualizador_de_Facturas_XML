@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+    .header {
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .content {
+        margin: 30px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .badge-link {
+        text-decoration: none;
+    }
+
+</style>
+<header class=" modal-header bg-dark text-light">
+    <h1>Gestión de Perfiles y Facturas XML</h1>
+</header>
+
+<main class="content">
+    <h2 class="text-center">Bienvenido</h2>
+    <p class="text-center">Para comenzar, primero necesitas crear un perfil. Haz clic en el siguiente enlace para hacerlo:</p>
+    <p class="text-center">
+        <a class="badge-link" href="/perfil/index">
+            <span class="badge bg-primary fs-4 p-3">Crear Perfil</span>
+        </a>
+    </p>
+
+    <p class="text-center">Una vez que hayas creado tu perfil, podrás subir y visualizar tus facturas XML aquí:</p>
+    <p class="text-center">
+        <a class="badge-link" href="/facturas/index">
+            <span class="badge bg-primary fs-4 p-3">Subir Factura</span>
+        </a>
+    </p>
+
+</main>

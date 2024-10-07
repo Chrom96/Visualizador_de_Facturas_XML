@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Visualizador_de_Facturas_XML.Models.Factura>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Facturas</h1>
+
+<p>
+    <a class="btn btn-primary" onclick="openModal('@Url.Action("Create", new {})', 'Create')" role="button">
+	    <i class="fs-1 bi bi-file-earmark-plus"></i>
+	</a>
+</p>
+
+
+    <div class="input-group">
+    <input type="text" class="form-control mb-3" list="datalistOptions" id="filterInput" placeholder="Type to search...">
+        <datalist id="datalistOptions">
+            @foreach (var perfil in ViewBag.PerfilId as SelectList)
+            {
+                <option value="@perfil.Text" />
+            }
+        </datalist>
+    </div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UUID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UUID)
+                </td>
+                <td class="perfil-nombre">
+                    @Html.DisplayFor(modelItem => item.Perfil.Nombre) 
+				</td>
+				<td>
+				    <a class="btn btn-warning" onclick="openModal('@Url.Action("Edit", new { id = item.UUID })', 'Editar')" role="button">
+		                <i class="bi bi-pencil-fill"></i>
+	                </a>
+                        <a class="btn btn-success" onclick="openModal('@Url.Action("Details", new { id = item.UUID })', 'Detalles')" role="button">
+		                <i class="bi bi-eye"></i>
+	                </a>
+	                <a class="btn btn-danger" onclick="openModal('@Url.Action("Delete", new { id = item.UUID })', 'Borrar')" role="button">
+		                <i class="bi bi-trash-fill"></i>
+	                </a>
+				</td>
+			</tr>
+		}
+    </tbody>
+</table>
+
+
+<script src="~/js/FiltrarPorPerfil.js" asp-append-version="true"></script>

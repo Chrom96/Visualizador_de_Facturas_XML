@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Visualizador_de_Facturas_XML</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Visualizador_de_Facturas_XML.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Custom.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-icons.css">
+</head>
+<body class="bg-dark text-light">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom mb-3">
+            <div class="container-fluid">
+                <h2> <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door-fill fs-2"></i></a></h2>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item text-center mx-2 mx-lg-1">
+                            <a class="nav-link" asp-area="" asp-controller="Facturas" asp-action="">
+                                <div>
+                                    <i class="bi bi-file-post mb-1"></i>
+                                </div>
+                                Facturas
+                            </a>
+                        </li>
+                        <li class="nav-item text-center mx-2 mx-lg-1">
+                            <a class="nav-link" asp-area="" asp-controller="Perfil" asp-action="">
+                                <div>
+                                    <i class="bi bi-person-fill mb-1"></i>
+                                </div>
+                                Perfiles
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container bg-light text-dark p-4 rounded shadow-lg">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            <!-- Modal -->
+            <div class="modal fade" id="actionModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" id="ModalSize">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-light">
+                            <!-- Fondo oscuro y texto claro -->
+                            <h5 class="modal-title" id="modalTitle"></h5>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-circle"></i></button> <!-- Botón X rojo -->
+                        </div>
+                        <div class="modal-body" id="modalBody">
+                            <!-- El contenido se cargará aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-5 py-3">
+        <div class="container">
+            &copy; 2024 - Visualizador_de_Facturas_XML - <a asp-area="" asp-controller="Home" asp-action="About" class="text-light">Acerca de</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/openModal.js" asp-append-version="true"></script>
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

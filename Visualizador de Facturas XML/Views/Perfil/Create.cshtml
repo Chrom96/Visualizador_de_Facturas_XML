@@ -1,0 +1,28 @@
+﻿@model Visualizador_de_Facturas_XML.Models.Perfil
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Perfil</h4>
+<hr />
+<div class="row">
+    <form id="formPost" method="post" asp-action="Create">
+        <div  asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        <p>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </p>
+        </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
